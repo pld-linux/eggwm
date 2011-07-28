@@ -1,0 +1,6 @@
+[Desktop Entry]
+Encoding=UTF-8
+Type=XSession
+Exec=eggwm
+Name=EggWM with Razor Desktop
+Comment=Qt4 Session
