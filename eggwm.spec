@@ -26,13 +26,18 @@ EggWM jest menedżerem okien bazowanym na Qt4 oraz Xlib.
 
 %build
 lrelease-qt4 EggWM.pro
-DESTDIR=$RPM_BUILD_ROOT PREFIX=%{_prefix} qmake-qt4 EggWM.pro
+PREFIX=%{_prefix} \
+DESTDIR=$RPM_BUILD_ROOT \
+qmake-qt4 EggWM.pro
 %{__make}
 
 %install
 rm -rf $RPM_BUILD_ROOT
-%{__make} install INSTALL_ROOT=$RPM_BUILD_ROOT
-install -D %SOURCE1 $RPM_BUILD_ROOT%{_datadir}/xsessions/%{name}.desktop
+install -d $RPM_BUILD_ROOT%{_datadir}/xsessions
+%{__make} install \
+	INSTALL_ROOT=$RPM_BUILD_ROOT
+
+cp -p %{SOURCE1} $RPM_BUILD_ROOT%{_datadir}/xsessions
 
 %clean
 rm -rf $RPM_BUILD_ROOT
